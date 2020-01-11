@@ -1,0 +1,43 @@
+#%RAML 1.0
+title: my-test-api
+version: v1
+baseUri: http://localhost:8081/api/v1
+traits:
+  clientIdEnforcement:
+    headers:
+      client_id:
+        displayName: Client id
+        description: Identify the application for authentication purposes
+        type: string
+        required: true
+        example: 'abc123'
+      client_secret:
+        displayName: Client secret
+        description: Secret key for authentication purposes
+        type: string
+        required: true
+        example: 'abc123'
+  
+/books:
+  /{bookTitle}:
+    get:
+
+      description: Retrieve a specific book title
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "data": {
+                    "id": "SbBGk",
+                    "title": "The Curious Lives of Human Cadavers",
+                    "description": null,
+                    "datetime": 1341533193,
+                    "genre": "science",
+                    "author": "Mary Roach",
+                    "link": "http://e-bookmobile.com/books/Stiff"
+                  },
+                  "success": true,
+                  "status": 200
+                }
