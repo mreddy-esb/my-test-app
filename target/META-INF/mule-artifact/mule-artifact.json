@@ -1,0 +1,25 @@
+{
+  "configs": [
+    "my-test-api.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "com.mycompany:my-test-app:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.2.1",
+  "requiredProduct": "MULE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "api/my-test-api.raml",
+        "log4j2.xml",
+        "my-test-api.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}
