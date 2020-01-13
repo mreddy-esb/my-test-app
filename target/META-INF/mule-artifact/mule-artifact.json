@@ -13,6 +13,7 @@
       "exportedPackages": [],
       "exportedResources": [
         "api/my-test-api.raml",
+        "configuration.yaml",
         "log4j2.xml",
         "my-test-api.xml"
       ]
