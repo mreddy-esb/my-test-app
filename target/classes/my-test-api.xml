@@ -5,7 +5,8 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
         <http:listener-connection host="0.0.0.0" port="8082" />
     </http:listener-config>
     <apikit:config name="my-test-api-config" api="my-test-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
-    <api-gateway:autodiscovery apiId="15953488" doc:name="API Autodiscovery" doc:id="0b4781bb-9227-486f-9de1-4018336d3e8c" flowRef="my-test-api-main" />
+    <api-gateway:autodiscovery apiId="${autoDiscovery.id}" doc:name="API Autodiscovery" doc:id="0b4781bb-9227-486f-9de1-4018336d3e8c" flowRef="my-test-api-main" />
+	<configuration-properties doc:name="Configuration properties" doc:id="90a82a23-544f-42ca-8b09-873388f2ac97" file="configuration.yaml" />
 	<flow name="my-test-api-main">
         <http:listener config-ref="my-test-api-httpListenerConfig" path="/api/v1/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
