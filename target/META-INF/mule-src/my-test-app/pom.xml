@@ -29,7 +29,25 @@
 				</configuration>
 			</plugin>
 
-			
+			 <!-- Deploy to Runtime -->
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>3.3.2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<armDeployment>
+						<muleVersion>${app.runtime}</muleVersion>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<target>mule-on-prem</target>
+						<targetType>server</targetType>
+						<username>${username}</username>
+						<password>${password}</password>
+						<environment>Sandbox</environment>
+					</armDeployment>
+				</configuration>
+				
+			</plugin>
 
 
 
