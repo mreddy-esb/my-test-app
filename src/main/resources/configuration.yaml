@@ -1,3 +1,4 @@
 autoDiscovery:
   id: "15953488"
 test: "test"
+develop: "develop"
