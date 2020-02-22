@@ -4,8 +4,12 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
     <apikit:config name="my-test-api-config" api="my-test-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <api-gateway:autodiscovery apiId="${autoDiscovery.id}" doc:name="API Autodiscovery" doc:id="0b4781bb-9227-486f-9de1-4018336d3e8c" flowRef="my-test-api-main" />
 	<configuration-properties doc:name="Configuration properties" doc:id="90a82a23-544f-42ca-8b09-873388f2ac97" file="configuration.yaml" />
+	<flow name="my-test-apiFlow" doc:id="bc1c1cb0-7ca3-4926-919b-9f7a62979406" >
+		<http:listener doc:name="Listener" doc:id="8cf93728-e519-423e-bb56-340eef49e97f" config-ref="my-test-domain-httpListenerConfig" path="/moves/v1/*"/>
+		<set-payload value="#['success']" doc:name="Set Payload" doc:id="ed7c8d4b-aa8c-4228-b443-4760a919c12e" />
+	</flow>
 	<flow name="my-test-api-main">
-        <http:listener config-ref="my-test-domain-httpListenerConfig" path="/api/v1/*">
+        <http:listener config-ref="my-test-domain-httpListenerConfig" path="/maps/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:response>
@@ -14,9 +18,9 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:router config-ref="my-test-api-config" />
-        <error-handler>
-            <on-error-propagate type="APIKIT:BAD_REQUEST">
+        <set-payload value="#['success1']" doc:name="Set Payload" doc:id="07c0b00f-cdc0-4997-9691-0c9d99f38ab2" />
+		<error-handler>
+            <on-error-propagate type="APIKIT:BAD_REQUEST" enableNotifications="true" logException="true">
                 <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
